@@ -102,9 +102,9 @@
 		const uri = document.getElementById("uri-input").value;
 		const url = new URL(window.location.href);
 		const regex = /:\/\/[^ "]+/;
-		if (regex.test(url)){
-			url.searchParams.set("uri", uri);
+		if ( regex.test(url.toString()) ) {
 			newPage = false;
+			url.searchParams.set("uri", uri);
 			window.location.href = url.toString();
 		}
 		else
@@ -112,7 +112,7 @@
 	}
 
     if (window.location.search.includes("uri") && newPage==true) {
-    	const url = new URL(window.location.href);
+		const url = new URL(window.location.href);
 		const uri = url.searchParams.get("uri");
 		window.open(uri);
     }
