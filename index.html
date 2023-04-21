@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Site</title>
+    	<title>My Site</title>
 	<style>
+		.center {
+  			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			height: 100vh;
+		}
 		body {
 			background-color: black;
 			color: white;
@@ -27,44 +33,69 @@
 			border-color: white;
 			cursor: pointer;
 		}
+		.instructions {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  z-index: 1;
+}
+
+.hide {
+  display: none;
+}
 	</style>
 </head>
 <body>
 	<input type="text" id="uri-input" />
 	<button onclick="goToUri()">Go</button>
 	
-	<div id="instructions" style="height:200vh; background-color:black; color:white; text-align:center;">
-	  <h1>Instructions</h1>
-	  <p>Scroll down for instructions.</p>
-	  <p>Scroll up to go back to the input box and button.</p>
+	<div class="instructions hide"style="height:200vh; background-color:black; color:white; text-align:center;">
+  		<h1>Instructions</h1>
+  		<p>Here are some instructions...</p>
 	</div>
+</body>
+<script>
+	window.addEventListener('scroll', function() {
+    var instructions = document.querySelector('.instructions');
+    var center = document.querySelector('.center');
+    var scrollPosition = window.scrollY;
 
-	<script>
+    if (scrollPosition > center.offsetHeight) {
+        instructions.classList.remove('hide');
+        center.classList.add('hide');
+    } else {
+        instructions.classList.add('hide');
+        center.classList.remove('hide');
+    }
 	function goToUri() {
-       const uri = document.getElementById("uri-input").value;
-       const url = new URL(window.location.href);
-       url.searchParams.set("uri", uri);
-       if (isValidUrl(uri))
-         window.location.href = url.toString();
-       else
-         alert("Invalid URL");
-     }
-    
-     function isValidUrl(url) {
-      const regex = /:\/\/[^ "]+/;
-      return regex.test(url);
-    }
+       		const uri = document.getElementById("uri-input").value;
+       		const url = new URL(window.location.href);
+       		url.searchParams.set("uri", uri);
+       		if (isValidUrl(uri))
+        		window.location.href = url.toString();
+       		else
+         		alert("Invalid URL");
+     		}
+   		
+	function isValidUrl(url) {
+      		const regex = /:\/\/[^ "]+/;
+      		return regex.test(url);
+    	}
 
-    function followUri() {
-      const url = new URL(window.location.href);
-      const uri = url.searchParams.get("uri");
-      window.open(uri);
-    }
+    	function followUri() {
+      		const url = new URL(window.location.href);
+      		const uri = url.searchParams.get("uri");
+      		window.open(uri);
+    	}
      
-    if (window.location.search.includes("uri")) {
-      followUri();
-    }
+    	if (window.location.search.includes("uri")) {
+      		followUri();
+    	}
 
+	//Style
 	var prevScrollpos = window.pageYOffset;
 
 	window.onscroll = function() {
