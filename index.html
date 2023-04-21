@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <title>My Site</title>
+  </head>
+  <body>
+    <input type="text" id="uri-input" />
+    <button onclick="goToUri()">Go</button>
 
-<h2>Open External Program</h2>
-
-<p>Click the button to open an external program.</p>
-
-<button onclick="openProgram()">Open Program</button>
-
-<script>
-function openProgram() {
-  const myObsidianURI = "obsidian://open?vault=myMind";
-  const encodedURI = encodeURI(myObsidianURI);
-  const myURL = `https://12-vide.github.io/uriShortcut?uri=${encodedURI}`;
-
-  window.open(myURL);
-}
-</script>
+    <script>
+      function goToUri() {
+        const uri = document.getElementById("uri-input").value;
+        const url = new URL(window.location.href);
+        url.searchParams.set("uri", uri);
+        window.location.href = url.toString();
+      }
+    </script>
+  </body>
+</html>
