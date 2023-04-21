@@ -10,6 +10,16 @@
 		  	height: 100vh;
 		}
 		
+		.top_title {
+			display: flex;
+			justify-content: center;
+			align-items: top;
+		  	height: 100vh;
+			color:gray;
+			font-size: 12px;
+		}
+		
+		
 		body {
 			background-color: black;
 		  	color: white;
@@ -43,6 +53,9 @@
 </head>
 
 <body>
+	<div class="top_title">
+  		<h2 style="">uriShortcut</h2>
+	</div>
 	<div class="center">
 		<input type="text" id="uri-input" />
 	  	<button onclick="goToUri()">Ok</button>
