@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
 	<title>My Site</title>
 	<style>
 		body {
@@ -33,14 +33,14 @@
 	<input type="text" id="uri-input" />
 	<button onclick="goToUri()">Go</button>
 	
-	<div style="height:200vh; background-color:black; color:white; text-align:center;">
+	<div id="instructions" style="height:200vh; background-color:black; color:white; text-align:center;">
 	  <h1>Instructions</h1>
 	  <p>Scroll down for instructions.</p>
 	  <p>Scroll up to go back to the input box and button.</p>
 	</div>
-  </body>
-   <script>
-     function goToUri() {
+
+	<script>
+	function goToUri() {
        const uri = document.getElementById("uri-input").value;
        const url = new URL(window.location.href);
        url.searchParams.set("uri", uri);
@@ -64,6 +64,23 @@
     if (window.location.search.includes("uri")) {
       followUri();
     }
-    
-  </script>
+
+	var prevScrollpos = window.pageYOffset;
+
+	window.onscroll = function() {
+	  var currentScrollPos = window.pageYOffset;
+
+	  if (prevScrollpos > currentScrollPos) {
+	    document.getElementById("uri-input").style.display = "block";
+	    document.getElementById("instructions").style.display = "none";
+	    document.getElementsByTagName("button")[0].style.display = "block";
+	  } else {
+	    document.getElementById("uri-input").style.display = "none";
+	    document.getElementById("instructions").style.display = "block";
+	    document.getElementsByTagName("button")[0].style.display = "none";
+	  }
+
+	  prevScrollpos = currentScrollPos;
+	}
+	</script>
 </html>
