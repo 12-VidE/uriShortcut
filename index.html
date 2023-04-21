@@ -61,17 +61,19 @@
 </body>
 <script>
 	window.addEventListener('scroll', function() {
-    var instructions = document.querySelector('.instructions');
-    var center = document.querySelector('.center');
-    var scrollPosition = window.scrollY;
+	    var instructions = document.querySelector('.instructions');
+	    var center = document.querySelector('.center');
+	    var scrollPosition = window.scrollY;
 
-    if (scrollPosition > center.offsetHeight) {
-        instructions.classList.remove('hide');
-        center.classList.add('hide');
-    } else {
-        instructions.classList.add('hide');
-        center.classList.remove('hide');
-    }
+	    if (scrollPosition > center.offsetHeight) {
+		instructions.classList.remove('hide');
+		center.classList.add('hide');
+	    } else {
+		instructions.classList.add('hide');
+		center.classList.remove('hide');
+	    }
+	
+	//Base
 	function goToUri() {
        		const uri = document.getElementById("uri-input").value;
        		const url = new URL(window.location.href);
@@ -96,24 +98,5 @@
     	if (window.location.search.includes("uri")) {
       		followUri();
     	}
-
-	//Style
-	var prevScrollpos = window.pageYOffset;
-
-	window.onscroll = function() {
-	  var currentScrollPos = window.pageYOffset;
-
-	  if (prevScrollpos > currentScrollPos) {
-	    document.getElementById("uri-input").style.display = "block";
-	    document.getElementById("instructions").style.display = "none";
-	    document.getElementsByTagName("button")[0].style.display = "block";
-	  } else {
-	    document.getElementById("uri-input").style.display = "none";
-	    document.getElementById("instructions").style.display = "block";
-	    document.getElementsByTagName("button")[0].style.display = "none";
-	  }
-
-	  prevScrollpos = currentScrollPos;
-	}
 	</script>
 </html>
