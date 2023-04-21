@@ -101,15 +101,19 @@
 	function goToUri() {
 		const uri = document.getElementById("uri-input").value;
 		const url = new URL(window.location.href);
-		const regex = /:\/\/[^ "]+/;
-		if ( regex.test(url.toString()) ) {
+		url.searchParams.set("uri", uri);
+		if (isValidUrl(uri)){
 			newPage = false;
-			url.searchParams.set("uri", uri);
 			window.location.href = url.toString();
 		}
 		else
 			alert("Invalid URL");
-	}
+     }
+    
+	function isValidUrl(url) {
+		const regex = /:\/\/[^ "]+/;
+		return regex.test(url);
+    }
 
     if (window.location.search.includes("uri") && newPage==true) {
 		const url = new URL(window.location.href);
