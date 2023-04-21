@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
+	<title>My Site</title>
 	<style>
 		.center {
-  			display: flex;
-  			justify-content: center;
-  			align-items: center;
-  			height: 100vh;
-		}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 		body {
 			background-color: black;
 			color: white;
@@ -33,32 +34,43 @@
 			cursor: pointer;
 		}
 	</style>
-    	<title>uriShortcut</title>
 </head>
 <body>
 	<div class="center">
-		<input type="text" id="uri-input"/>
-	  	<button onclick="goToUri()">Go</button>
+	  <input type="text" id="uri-input" />
+	  <button onclick="goToUri()">Ok</button>
 	</div>
-</body>
-<script>	
-	//Base
-	function goToUri() {
-       		const uri = document.getElementById("uri-input").value;
-       		const url = new URL(window.location.href);
-       		url.searchParams.set("uri", uri);
-       		const regex = /:\/\/[^ "]+/;
-		if (regex.test(uri))
-        		window.location.href = url.toString();
-       		else
-         		alert("Invalid URL");
-     		}
-	}
+	
+	<div style="height:200vh; background-color:black; color:white; text-align:center;">
+	  <h1>Instructions</h1>
+	  <p>Scroll down for instructions.</p>
+	  <p>Scroll up to go back to the input box and button.</p>
+	</div>
+  </body>
+   <script>
+     function goToUri() {
+       const uri = document.getElementById("uri-input").value;
+       const url = new URL(window.location.href);
+       url.searchParams.set("uri", uri);
+       if (isValidUrl(uri))
+         window.location.href = url.toString();
+       else
+         alert("Invalid URL");
+     }
+    
+     function isValidUrl(url) {
+      const regex = /:\/\/[^ "]+/;
+      return regex.test(url);
+    }
+
+    function followUri() {
+      const url = new URL(window.location.href);
+      const uri = url.searchParams.get("uri");
+      window.open(uri);
+    }
      
-    	if (window.location.search.includes("uri")) {
-      		const url = new URL(window.location.href);
-      		const uri = url.searchParams.get("uri");
-      		window.open(uri);
-    	}
-</script>
-</html>
+    if (window.location.search.includes("uri")) {
+      followUri();
+    }
+    
+  </script>
