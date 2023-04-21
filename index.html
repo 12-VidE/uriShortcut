@@ -34,23 +34,25 @@
 			cursor: pointer;
 		}
 		.instructions {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: white;
-  z-index: 1;
-}
+  			position: fixed;
+	  		top: 0;
+			  left: 0;
+			  right: 0;
+			  bottom: 0;
+			  background-color: white;
+			  z-index: 1;
+		}
 
-.hide {
-  display: none;
-}
+		.hide {
+		  	display: none;
+		}
 	</style>
 </head>
 <body>
-	<input type="text" id="uri-input" />
-	<button onclick="goToUri()">Go</button>
+	<div class="center">
+		<input type="text" id="uri-input" />
+	  	<button onclick="goToUri()">Go</button>
+	</div>
 	
 	<div class="instructions hide"style="height:200vh; background-color:black; color:white; text-align:center;">
   		<h1>Instructions</h1>
