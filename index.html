@@ -3,27 +3,37 @@
   <head>
     <title>My Site</title>
   </head>
+ 
   <body>
     <input type="text" id="uri-input" />
     <button onclick="goToUri()">Go</button>
-
-    <script>
-      function goToUri() {
-        const uri = document.getElementById("uri-input").value;
-        const url = new URL(window.location.href);
-        url.searchParams.set("uri", uri);
-        window.location.href = url.toString();
-      }
-
-      function followUri() {
-        const url = new URL(window.location.href);
-        const uri = url.searchParams.get("uri");
-        window.open(uri);
-      }
-
-      if (window.location.search.includes("uri")) {
-        followUri();
-      }
-    </script>
   </body>
+  
+   <script>
+     function goToUri() {
+       const uri = document.getElementById("uri-input").value;
+       const url = new URL(window.location.href);
+       url.searchParams.set("uri", uri);
+       if (isValidUrl(uri))
+         window.location.href = url.toString();
+       else
+         alert("Invalid URL");
+     }
+    
+     function isValidUrl(url) {
+      const regex = /:\/\/[^ "]+/;
+      return regex.test(url);
+    }
+
+    function followUri() {
+      const url = new URL(window.location.href);
+      const uri = url.searchParams.get("uri");
+      window.open(uri);
+    }
+     
+    if (window.location.search.includes("uri")) {
+      followUri();
+    }
+    
+  </script>
 </html>
