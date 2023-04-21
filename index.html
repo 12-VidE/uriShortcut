@@ -114,15 +114,17 @@
 		const regex = /:\/\/[^ "]+/;
 		return regex.test(url);
     }
-
+	
+	const closeTab = () => { 
+		window.close(``, `_parent`, ``); 
+	}
+	
     if (window.location.search.includes("uri") && newPage==true) {
 		const url = new URL(window.location.href);
 		const uri = url.searchParams.get("uri");
 		window.open(uri);
 		closeTab();
     }
-	const closeTab = () => { 
-		window.close(``, `_parent`, ``); 
-	};
+
 </script>
 </html>
