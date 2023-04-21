@@ -119,7 +119,7 @@
 		const url = new URL(window.location.href);
 		const uri = url.searchParams.get("uri");
 		window.open(uri);
-	    	window.top.close();
+	    	window.close(location, '_self').close();;
     }
 </script>
 </html>
