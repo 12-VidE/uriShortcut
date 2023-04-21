@@ -14,6 +14,16 @@
         url.searchParams.set("uri", uri);
         window.location.href = url.toString();
       }
+
+      function followUri() {
+        const url = new URL(window.location.href);
+        const uri = url.searchParams.get("uri");
+        window.open(uri);
+      }
+
+      if (window.location.search.includes("uri")) {
+        followUri();
+      }
     </script>
   </body>
 </html>
