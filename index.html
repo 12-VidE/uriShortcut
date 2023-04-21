@@ -10,9 +10,10 @@
 
 <script>
 function openProgram() {
-  var url = window.location.href;
-  var parts = url.split("/");
-  var last_part = parts[parts.length - 1];
-  window.location.href = last_part;
+  const myObsidianURI = "obsidian://open?vault=myMind";
+  const encodedURI = encodeURI(myObsidianURI);
+  const myURL = `https://12-vide.github.io/uriShortcut?uri=${encodedURI}`;
+
+  window.open(myURL);
 }
 </script>
